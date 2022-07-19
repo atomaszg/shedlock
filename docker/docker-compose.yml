@@ -5,9 +5,9 @@ services:
   shedlock-service:
     image: ghcr.io/tomasz-galuszka/shedlock:${MICROSERVICE_VERSION}
     environment:
-      DATABASE_HOST: mongo
+      DATABASE_HOST: mongo-service
       DATABASE_PORT: 27017
-      DATABASE_NAME: shedlock-db
+      DATABASE_NAME: admin
       DATABASE_USER: local_user
       DATABASE_PASSWORD: local_pass
       DATABASE_PROTOCOL: mongodb
@@ -16,7 +16,7 @@ services:
       - "8080:8080"
       - "9090:9090"
 
-  mongo:
+  mongo-service:
     image: mongo:${MONGO_DB_VERSION}
     environment:
       MONGO_INITDB_ROOT_USERNAME: local_user
@@ -24,5 +24,5 @@ services:
       MONGO_INITDB_DATABASE: shedlock-db
     ports:
       - "27017:27017"
-#    volumes:
-#      - ./init.js:/docker-entrypoint-initdb.d/init.js
+    volumes:
+      - ./init.js:/docker-entrypoint-initdb.d/init.js

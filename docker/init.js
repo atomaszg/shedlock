@@ -1,5 +1,5 @@
-db.auth('tomgal', 'baza12')
-db = db.getSiblingDB('blog')
+db.auth('local_user', 'local_pass')
+db = db.getSiblingDB('shedlock-db')
 
 for (var i=1; i <= 10; i++) {
   db.article.insert(

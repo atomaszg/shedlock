@@ -8,10 +8,14 @@ import java.time.Instant
 @Component
 class HelloWorldTask {
 
-    @Scheduled(fixedDelay = 10_000)
-    @SchedulerLock(name = "repeatHelloWorld")
+    @Scheduled(fixedDelay = 5_000)
+    @SchedulerLock(
+        name = "repeatHelloWorld", // unikalna nazwa, po której robiony jest lock
+        lockAtLeastFor = "PT5s",  //  lock minimum na 5s, czyli task wykonuje się nie czesciej niz co 5s
+        lockAtMostFor = "PT20s"    // jezeli node nie zakonczy taska po 20s lock jest zwalniany
+    )
     fun repeatHelloWorld() {
-        println("Hello world: ${Instant.now()}")
+        println("[${Thread.currentThread().name}] Hello world: ${Instant.now()}")
 
     }
 }
