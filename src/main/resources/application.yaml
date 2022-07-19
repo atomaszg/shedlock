@@ -1,0 +1,3 @@
+server.port: 8080
+spring.data.mongodb:
+    uri: ${DATABASE_PROTOCOL:mongodb}://${DATABASE_USER:local_user}:${DATABASE_PASSWORD:local_pass}@${DATABASE_HOST:localhost}/${DATABASE_NAME:shedlock-db}?retryWrites=true&w=majority
