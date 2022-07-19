@@ -1,5 +1,5 @@
 ### ShedLock
-Scheduluje task tylko na 1 node w danym czasie - exlusice execution
+Scheduluje task tylko na 1 node w danym czasie - exclusive execution
 
 ![img.png](example.png)[]
 
