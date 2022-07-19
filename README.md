@@ -1,6 +1,6 @@
 ### ShedLock
-Uruchamia schedulera tylko na 1 node w danym czasie
+Scheduluje task tylko na 1 node w danym czasie - exlusice execution
 
 ### Links
-* https://www.baeldung.com/shedlock-spring
 * https://github.com/lukas-krecan/ShedLock
+* https://www.baeldung.com/shedlock-spring

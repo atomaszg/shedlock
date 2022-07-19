@@ -18,10 +18,4 @@ docker-down:
 docker-up: docker-down
 	docker-compose --project-directory=$(shell pwd)/docker up -d
 	docker-compose --project-directory=$(shell pwd)/docker ps
-	docker-compose --project-directory=$(shell pwd)/docker logs -f shedlock-service
-docker-logs:
-	docker-compose --project-directory=$(shell pwd)/docker logs -f shedlock-service
-docker-restart:
-	docker-compose --project-directory=$(shell pwd)/docker stop shedlock-service
-	docker-compose --project-directory=$(shell pwd)/docker up -d --no-deps --force-recreate --build shedlock-service
-	docker-compose --project-directory=$(shell pwd)/docker logs -f shedlock-service
+	docker-compose --project-directory=$(shell pwd)/docker logs -f shedlock-service-1 shedlock-service-2 shedlock-service-3

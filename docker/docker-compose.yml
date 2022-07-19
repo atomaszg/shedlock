@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
 
-  shedlock-service:
+  shedlock-service-1:
     image: ghcr.io/tomasz-galuszka/shedlock:${MICROSERVICE_VERSION}
     environment:
       DATABASE_HOST: mongo-service
@@ -11,10 +11,6 @@ services:
       DATABASE_USER: local_user
       DATABASE_PASSWORD: local_pass
       DATABASE_PROTOCOL: mongodb
-      JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:9090"
-    ports:
-      - "8080:8080"
-      - "9090:9090"
 
   shedlock-service-2:
     image: ghcr.io/tomasz-galuszka/shedlock:${MICROSERVICE_VERSION}
@@ -25,10 +21,16 @@ services:
       DATABASE_USER: local_user
       DATABASE_PASSWORD: local_pass
       DATABASE_PROTOCOL: mongodb
-      JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:9090"
-    ports:
-      - "8081:8080"
-      - "9091:9090"
+
+  shedlock-service-3:
+    image: ghcr.io/tomasz-galuszka/shedlock:${MICROSERVICE_VERSION}
+    environment:
+      DATABASE_HOST: mongo-service
+      DATABASE_PORT: 27017
+      DATABASE_NAME: admin
+      DATABASE_USER: local_user
+      DATABASE_PASSWORD: local_pass
+      DATABASE_PROTOCOL: mongodb
 
   mongo-service:
     image: mongo:${MONGO_DB_VERSION}
@@ -38,5 +40,3 @@ services:
       MONGO_INITDB_DATABASE: shedlock-db
     ports:
       - "27017:27017"
-    volumes:
-      - ./init.js:/docker-entrypoint-initdb.d/init.js
